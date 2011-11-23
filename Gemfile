@@ -1,3 +1,6 @@
+source :rubygems
+
+gem 'gauges'
 gem 'rack-contrib'
 gem 'thin'
 
