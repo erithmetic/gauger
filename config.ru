@@ -1,6 +1,7 @@
 require 'rack/session/cookie'
 require 'rack/contrib'
 require 'uri'
+require 'cgi'
 
 SPACER_GIF = File.read('spacer.gif')
 
@@ -39,10 +40,10 @@ class Gauger
   def url
     a = 'http://secure.gaug.es/track.gif'
     a += "?h[site_id]=" + ENV['GAUGES_SITE_ID']
-    a += "&h[resource]=" + resource
+    a += "&h[resource]=" + CGI::escape(resource)
     a += "&h[referrer]="
     a += "&h[title]="
-    a += "&h[user_agent]=" + agent
+    a += "&h[user_agent]=" + CGI::escape(agent)
     a += "&h[unique]=" + unique.to_s
     a += "&h[unique_hour]=" + uniqueHour.to_s
     a += "&h[unique_day]=" + uniqueDay.to_s
